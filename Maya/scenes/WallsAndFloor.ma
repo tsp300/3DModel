@@ -1,6 +1,6 @@
 //Maya ASCII 2025ff03 scene
 //Name: WallsAndFloor.ma
-//Last modified: Tue, Sep 03, 2024 07:18:02 PM
+//Last modified: Tue, Sep 03, 2024 08:12:36 PM
 //Codeset: 1252
 requires maya "2025ff03";
 requires "mtoa" "5.4.2.1";
@@ -10,20 +10,23 @@ fileInfo "product" "Maya 2025";
 fileInfo "version" "2025";
 fileInfo "cutIdentifier" "202407121012-8ed02f4c99";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 22631)";
-fileInfo "UUID" "861F7806-44FE-A246-CDE3-98972AF7A400";
+fileInfo "UUID" "46AD4029-4F2E-35A1-F11A-3D890FD536F1";
 createNode transform -s -n "persp";
 	rename -uid "C84CA87B-4127-49CE-CA64-42A2FBA63D81";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 33.597002659128833 25.197751994346621 33.597002659128833 ;
-	setAttr ".r" -type "double3" -27.938352729602379 44.999999999999972 -5.172681101354183e-14 ;
+	setAttr ".t" -type "double3" 10.718839416701993 6.4528714204573809 12.286816249873318 ;
+	setAttr ".r" -type "double3" -14.99999999999276 400.79999999989576 -1.0503881953099855e-15 ;
+	setAttr ".rpt" -type "double3" -6.7032033028434272e-17 3.9019896098028422e-16 2.4973026782885148e-16 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "BE4D332A-447F-6917-E01E-9CA768566A9E";
 	setAttr -k off ".v" no;
-	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 53.78144550794066;
+	setAttr ".pze" yes;
+	setAttr ".fl" 34.999999999999979;
+	setAttr ".coi" 16.731195298206998;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
+	setAttr ".tp" -type "double3" -2.3707448091256339e-15 2 0 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	rename -uid "801289B7-4A5E-20C9-A82C-A0B3FB35991D";
@@ -75,10 +78,77 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 	setAttr ".ai_translator" -type "string" "orthographic";
+createNode transform -n "WhiteboxRoom";
+	rename -uid "B5086B6B-4107-911E-42A2-109D82E984AA";
+	setAttr ".rp" -type "double3" 0 2 0 ;
+	setAttr ".sp" -type "double3" 0 2 0 ;
+createNode mesh -n "WhiteboxRoomShape" -p "WhiteboxRoom";
+	rename -uid "EF7C0DF6-4097-9C39-1811-7F869C603816";
+	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr -s 6 ".gtag";
+	setAttr ".gtag[0].gtagnm" -type "string" "back";
+	setAttr ".gtag[0].gtagcmp" -type "componentList" 3 "f[0]" "f[3]" "f[6:7]";
+	setAttr ".gtag[1].gtagnm" -type "string" "bottom";
+	setAttr ".gtag[1].gtagcmp" -type "componentList" 3 "f[1]" "f[4]" "f[8:9]";
+	setAttr ".gtag[2].gtagnm" -type "string" "front";
+	setAttr ".gtag[2].gtagcmp" -type "componentList" 0;
+	setAttr ".gtag[3].gtagnm" -type "string" "left";
+	setAttr ".gtag[3].gtagcmp" -type "componentList" 3 "f[2]" "f[5]" "f[10:11]";
+	setAttr ".gtag[4].gtagnm" -type "string" "right";
+	setAttr ".gtag[4].gtagcmp" -type "componentList" 0;
+	setAttr ".gtag[5].gtagnm" -type "string" "top";
+	setAttr ".gtag[5].gtagcmp" -type "componentList" 0;
+	setAttr ".pv" -type "double2" 0.25 0.375 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 28 ".uvst[0].uvsp[0:27]" -type "float2" 0.375 0 0.375 0.25
+		 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.125 0 0.125 0.25 0.375
+		 0.5 0.625 0.5 0.625 0.75 0.375 0.75 0.625 1 0.375 1 0.125 0 0.375 0 0.375 0.25 0.125
+		 0.25 0.375 0.5 0.625 0.5 0.625 0.75 0.625 1 0.375 1 0.375 0 0.375 0.25 0.125 0.25;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 14 ".vt[0:13]"  -2 0 2 2 0 2 -2 4 2 -2 4 -2 2 4 -2 -2 0 -2
+		 2 0 -2 -2.13000011 4 -2.13000011 2 4 -2.13000011 2 -0.13000011 -2.13000011 -2.13000011 -0.13000011 -2.13000011
+		 2 -0.13000011 2 -2.13000011 -0.13000011 2 -2.13000011 4 2;
+	setAttr -s 24 ".ed[0:23]"  0 1 0 3 4 0 5 6 0 0 2 0 2 3 0 3 5 0 4 6 0
+		 5 0 0 6 1 0 3 7 0 4 8 0 7 8 0 6 9 0 8 9 0 10 9 0 7 10 0 1 11 0 9 11 0 0 12 0 12 11 0
+		 10 12 0 2 13 0 12 13 0 13 7 0;
+	setAttr -s 12 -ch 48 ".fc[0:11]" -type "polyFaces" 
+		f 4 11 13 -15 -16
+		mu 0 4 20 21 22 4
+		f 4 14 17 -20 -21
+		mu 0 4 4 22 23 24
+		f 4 20 22 23 15
+		mu 0 4 8 25 26 27
+		f 4 5 2 -7 -2
+		mu 0 4 10 13 12 11
+		f 4 7 0 -9 -3
+		mu 0 4 13 15 14 12
+		f 4 -6 -5 -4 -8
+		mu 0 4 16 19 18 17
+		f 4 1 10 -12 -10
+		mu 0 4 2 3 21 20
+		f 4 6 12 -14 -11
+		mu 0 4 3 5 22 21
+		f 4 8 16 -18 -13
+		mu 0 4 5 7 23 22
+		f 4 -1 18 19 -17
+		mu 0 4 7 6 24 23
+		f 4 3 21 -23 -19
+		mu 0 4 0 1 26 25
+		f 4 4 9 -24 -22
+		mu 0 4 1 9 27 26;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
 	rename -uid "212AA12F-4446-1607-8F80-EDADD1024ECD";
-	setAttr -s 2 ".lnk";
-	setAttr -s 2 ".slnk";
+	setAttr -s 3 ".lnk";
+	setAttr -s 3 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
 	rename -uid "AC56FF02-4A16-0EB4-E1F5-FC912346ABCE";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
@@ -140,6 +210,27 @@ createNode script -n "sceneConfigurationScriptNode";
 	rename -uid "0C54622E-4F22-82B7-CB8B-7EA5C194431C";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 120 -ast 1 -aet 200 ";
 	setAttr ".st" 6;
+createNode lambert -n "Pink";
+	rename -uid "73CE7D75-4CDC-4460-925E-9B853DDDDF50";
+	setAttr ".c" -type "float3" 0.6135 0.47049999 1 ;
+createNode shadingEngine -n "lambert2SG";
+	rename -uid "748529ED-40BA-BEEE-F405-86989C2309F2";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo1";
+	rename -uid "8E05FE60-495A-DB58-8B30-8B9F033A1343";
+createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
+	rename -uid "DD00DE9C-44A7-DBD6-6FF4-70A3663B345E";
+	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
+	setAttr ".tgi[0].vl" -type "double2" -83.333330021964315 -794.04758749500274 ;
+	setAttr ".tgi[0].vh" -type "double2" 565.47616800618641 52.380950299520421 ;
+	setAttr -s 2 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -5.7142858505249023;
+	setAttr ".tgi[0].ni[0].y" -137.14285278320312;
+	setAttr ".tgi[0].ni[0].nvs" 1923;
+	setAttr ".tgi[0].ni[1].x" 301.42855834960938;
+	setAttr ".tgi[0].ni[1].y" -137.14285278320312;
+	setAttr ".tgi[0].ni[1].nvs" 1923;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -151,13 +242,15 @@ select -ne :hardwareRenderingGlobals;
 	setAttr ".fprt" yes;
 	setAttr ".rtfm" 1;
 select -ne :renderPartition;
-	setAttr -s 2 ".st";
+	setAttr -s 3 ".st";
 select -ne :renderGlobalsList1;
 select -ne :defaultShaderList1;
-	setAttr -s 5 ".s";
+	setAttr -s 6 ".s";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderingList1;
+select -ne :lambert1;
+	setAttr ".c" -type "float3" 1 1 1 ;
 select -ne :standardSurface1;
 	setAttr ".bc" -type "float3" 0.40000001 0.40000001 0.40000001 ;
 	setAttr ".sr" 0.5;
@@ -183,11 +276,25 @@ select -ne :defaultColorMgtGlobals;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
+select -ne :ikSystem;
+	setAttr -s 4 ".sol";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
+connectAttr "Pink.oc" "lambert2SG.ss";
+connectAttr "WhiteboxRoomShape.iog" "lambert2SG.dsm" -na;
+connectAttr "lambert2SG.msg" "materialInfo1.sg";
+connectAttr "Pink.msg" "materialInfo1.m";
+connectAttr "Pink.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+		;
+connectAttr "lambert2SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+		;
+connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
+connectAttr "Pink.msg" ":defaultShaderList1.s" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 // End of WallsAndFloor.ma
